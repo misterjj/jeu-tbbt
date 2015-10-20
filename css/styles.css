@@ -1,0 +1,87 @@
+body{
+  overflow: hidden;
+}
+.w100{
+  width : 100%;
+}
+.h100{
+  height : 100%;
+}
+#etape1{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translateY(-50%) translateX(-50%);
+      -ms-transform: translateY(-50%) translateX(-50%);
+          transform: translateY(-50%) translateX(-50%);
+}
+.allCarte{
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+  text-align: center;
+}
+.carte{
+  display: inline-block;
+  border : 3px solid #00bc8c;
+  color : #00bc8c;
+  background: white;
+  border-radius: 5px;
+  padding: 15px;
+  cursor: pointer;
+  -webkit-transition: all .5s;
+          transition: all .5s;
+
+  opacity: 0;
+}
+.carte:hover{
+    -webkit-transform: translateY(-75px) ;
+      -ms-transform: translateY(-75px) ;
+          transform: translateY(-75px) ;
+}
+.carte i{
+  display: block;
+  font-size: 100px;
+  margin: 20px;
+}
+.carte span{
+  font-size: 32px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+#etape2 p.h2{
+  opacity: 0;
+}
+#etape2 .encartPlay{
+  height : 30vh;
+  width : 30vh;
+  background : #3c3c3c;
+  border-radius : 10px;
+  text-align : center;
+}
+#encartPlayer,#encartBot{
+  border-radius : 10px;
+}
+.display-table{
+  display : table;
+}
+.display-cell{
+  display : table-cell;
+  vertical-align : middle;
+}
+.display-table-center{
+  margin-left : auto;
+  margin-right : auto;
+}
+#game{
+  margin-top : 30px;
+  font-size : 150px;
+  opacity : 0;
+}
+#game .score{
+  font-size : 100px;
+}
+#game p{
+  font-size : 50px;
+  padding : 0 10px;
+}
