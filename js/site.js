@@ -7,8 +7,20 @@ var winnable = {
   "hand-scissors-o" : ["hand-lizard-o","hand-paper-o"],
   "hand-lizard-o" : ["hand-spock-o","hand-paper-o"],
   "hand-spock-o" : ["hand-scissors-o","hand-rock-o"]
-}
+};
 $(function(){
+  videojs("regles").ready(function(){
+    var myPlayer = this;
+    $('#myModal').on('shown.bs.modal', function (e) {
+      myPlayer.play();
+    });
+    $('#myModal').on('hide.bs.modal', function (e) {
+      myPlayer.pause();
+    });
+    $('.replay').click(function(){
+      myPlayer.currentTime(0);
+    });
+  });
   $("#etape2 *").hide();
   $("#goEtape2").click(function(){
     $("#etape1").addClass("animated zoomOutRight");
@@ -22,14 +34,13 @@ $(function(){
       displayCarte(4);
       $("#game").addClass("animated fadeInUp");
       canPlay = true;
-    },1000)
-  })
-
+    },1000);
+  });
   $(".carte").click(function(){
     if(canPlay){
       canPlay = false;
       chosePlayer = $(this).attr("id");
-      $("#encartPlayer").html('<i class="fa fa-'+chosePlayer+'"></i>')
+      $("#encartPlayer").html('<i class="fa fa-'+chosePlayer+'"></i>');
       keys = Object.keys(winnable);
       choseBot = keys[Math.floor((Math.random() * 4))];
       $("#encartBot").html('<i class="fa fa-'+choseBot+'"></i>');
@@ -38,19 +49,19 @@ $(function(){
           $("#encartPlayer").css("background-color","#6DD480");
           $("#encartBot").css("background-color","#F26C5E");
           scorePlayer ++;
-          $("#scorePlayer").text(scorePlayer)
+          $("#scorePlayer").text(scorePlayer);
           break;
         case "bot" :
-          $("#encartPlayer").css("background-color","#F26C5E")
-          $("#encartBot").css("background-color","#6DD480")
+          $("#encartPlayer").css("background-color","#F26C5E");
+          $("#encartBot").css("background-color","#6DD480");
           scoreBot++;
-          $("#scoreBot").text(scoreBot)
+          $("#scoreBot").text(scoreBot);
           break;
         case "nul":
-          $("#encartPlayer").css("background-color","#F2B95E")
-          $("#encartBot").css("background-color","#F2B95E")
+          $("#encartPlayer").css("background-color","#F2B95E");
+          $("#encartBot").css("background-color","#F2B95E");
           break;
-      };
+      }
       canPlay = true;
     }
   });
@@ -59,12 +70,12 @@ $(function(){
 function whoWin(chosePlayer,choseBot){
   if(chosePlayer==choseBot)
     return "nul";
-  for(i in winnable[chosePlayer]){
+  for(var i in winnable[chosePlayer]){
     if(choseBot==winnable[chosePlayer][i])
       return "player";
   }
-  for(i in winnable[choseBot]){
-    if(chosePlayer==winnable[choseBot][i])
+  for(var j in winnable[choseBot]){
+    if(chosePlayer==winnable[choseBot][j])
       return "bot";
   }
 }
@@ -72,5 +83,5 @@ function whoWin(chosePlayer,choseBot){
 function displayCarte(x){
   setTimeout(function(){
     $(".carte:eq("+x+")").addClass("animated fadeInDown");
-  },x*100)
+  },x*100);
 }
